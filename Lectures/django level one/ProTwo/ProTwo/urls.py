@@ -18,6 +18,7 @@ from django.urls import path
 from AppTwo import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(r'help/', views.help_page, name="help"),
     path('AppTwo/', views.index_page, name="index"),
+    path('admin/', admin.site.urls)
 ]
