@@ -4,29 +4,16 @@
   <head>
     <meta charset="utf-8">
     <title>Django - AppTwo</title>
-    <link rel="stylesheet" href="{% static "css/styles.css" %}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   </head>
   <body>
-    <h1>Here are your users:</h1>
-    <div class="djangtwo">
-      {% if users %}
-      <table>
-        <thead>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Surname</th>
-          <th>Email</th>
-        </thead>
-        {% for user in users %}
-       <tr>
-         <td>{{ user.uid }}</td>
-         <td>{{ user.first_name }}</td>
-         <td>{{ user.last_name }}</td>
-         <td>{{ user.email }}</td>
-       </tr>
-       {% endfor %}
-      </table>
-      {% endif %}
+    <div class="container">
+      <h1>Please sign up here</h1>
+      <form method="POST">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" class="btn btn-primary" value="Submit">
+      </form>
     </div>
   </body>
 </html>

@@ -1,15 +1,20 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from AppTwo.models import Users
+from AppTwo.forms import NewUserForm
 
 def index_page(request):
-    return HttpResponse(r"<em>My second app </em>")
+    return render(request, 'AppTwo/index.html')
 
 def help_page(request):
     mappings = {"help_txt": "How can I help you today?"}
     return render(request, 'AppTwo/help.html', context=mappings)
 
 def users_page(request):
-    users_list = Users.objects.order_by('id')
-    users_dict = {'users': users_list}
-    return render(request, 'AppTwo/users.html', context=users_dict)
+    form = NewUserForm()
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return index_page(request)
+        else:
+            print("ERROR: form invalid")
+    return render(request, 'AppTwo/users.html', context={'form': form})
