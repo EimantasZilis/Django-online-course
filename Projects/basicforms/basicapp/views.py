@@ -12,7 +12,7 @@ def form_name_view(request):
         if form.is_valid():
             # Print to console
             print("Form validated successfully")
-            print("name: " form.cleaned_data["name"])
+            print("name: ", form.cleaned_data["name"])
             print("email: ", form.cleaned_data["email"])
             print("text: ", form.cleaned_data["text"])
 
