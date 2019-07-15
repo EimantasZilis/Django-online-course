@@ -1,0 +1,20 @@
+body{
+  background: url(https://ih1.redbubble.net/image.381889923.0699/flat,550x550,075,f.u2.jpg);
+  background-repeat: repeat;
+
+
+div{
+  background: blue;
+  border-color: orange;
+  border-width: 4px;
+  border-style: double;
+}
+
+p{
+  color: yellow;
+}
+
+span{
+  background: red;
+  color: black;
+}
