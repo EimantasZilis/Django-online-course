@@ -1,0 +1,17 @@
+/* Specificity. Indicates the hierarchy tree.
+They are prioritised in the following manner
+1) IDs sit on the top
+2) Classes
+3) Individual tags. */
+
+li{
+  color: red;
+}
+
+.topitems{
+  color: blue;
+}
+
+#two{
+  border: 3px solid black;
+}
