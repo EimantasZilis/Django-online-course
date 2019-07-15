@@ -1,0 +1,28 @@
+.firstDiv{
+  color: blue;
+}
+
+.secondDiv{
+  color: red;
+}
+
+#singledout{
+  color: cyan;
+  text-decoration: line-through;
+}
+
+h3 + ul{
+  /* Apply styling to ul tags that are after h3 */
+  border: 4px dotted purple;
+}
+
+li a{
+  /* Apply to a tags that are in li tags */
+  color: red;
+}
+
+li a[href="https://www.google.co.uk"]{
+  /* Apply to a tags (with specific href) that are in li tags */
+  color: blue;
+  border: 2px solid orange;
+}
