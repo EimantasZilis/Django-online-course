@@ -1,0 +1,34 @@
+
+.jumbotron{
+  background-color: white;
+}
+
+.btn-primary {
+  color: grey;
+  background-color: white;
+  border-color: #ced4da;  
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+  color: white;
+  background-color: #d61153;
+  border-color: #ced4da;
+}
+
+.navbar{
+  background-color: #d61153;
+  color:black;
+}
+
+.img-thumbnail{
+  margin: 20px 0px 20px 0px;
+}
+
+#main-pic{
+  width: 100%;
+}
+
+.container img {
+    width: 100%;
+    height: auto;
+}
