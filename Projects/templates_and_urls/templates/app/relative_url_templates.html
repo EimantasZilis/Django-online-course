@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Relative URL Templates</title>
+</head>
+<body>
+    <h1>Welcome to Relative URL templates</h1>
+    
+    <!-- Link to other page -->
+    <a href="{% url 'app:other' %}">The other page</a>
+
+    <!-- Link to admin page. Note the special syntax. 
+        Might need to make a migration to make it work -->
+    <a href="{% url 'admin:index' %}">Admin page</a>
+
+    <!-- Link to index page -->
+    <a href="{% url 'index' %}">Index page</a>
+
+</body>
+</html>
