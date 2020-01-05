@@ -1,5 +1,8 @@
 {% extends "app/base.html" %}
     {% block body_block %}
+        {% load my_extras %}
         <h1>Welcome to index</h1>
         <h2>This is index.html</h2>
+        <p>Injected text: {{ text | strip_chars:"w" }}</p>
+        <p>Injected number: {{ number | add:"99" }}</p>
     {% endblock %}
