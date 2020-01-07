@@ -1,12 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import View
-from django.http import HttpResponse
+from django.views.generic import View, TemplateView
 
+class IndexView(TemplateView):
+    template_name = 'app/index.html'
 
-class CBView(View):
-    def get(self, request):
-        return HttpResponse("CBVs man")
-
-# def index(request):
-#     return render(request, "app/index.html")
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['inject_me'] = 'BASIC INJCECTION'
+        return context
