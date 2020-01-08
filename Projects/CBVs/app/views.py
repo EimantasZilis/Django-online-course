@@ -1,5 +1,14 @@
 from django.shortcuts import render
-from django.views.generic import View, TemplateView, ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    TemplateView,
+    UpdateView,
+    View
+)
 
 from app import models
 
@@ -32,3 +41,16 @@ class SchoolDetailView(DetailView):
     context_object_name = 'school_detail' # Optional. Override tag name to 'school_detail'
     model = models.School
     template_name = "app/school_detail.html"
+
+
+class SchoolCreateView(CreateView):
+    model = models.School
+    fields = ('name', 'principal', 'location') # Fields to show
+
+class SchoolUpdateView(UpdateView):
+    fields = ('name', 'principal') # Fields to amend
+    model = models.School
+
+class SchoolDeleteView(DeleteView):
+    model = models.School
+    success_url = reverse_lazy("app:list") # page to redirect to if successful

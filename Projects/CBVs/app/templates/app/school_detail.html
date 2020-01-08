@@ -8,8 +8,19 @@
     <p>Principal: {{ school_detail.principal }}</p>
     <p>Location: {{ school_detail.location }}</p>
     <h3>Students:</h3>
+
     {% for student in school_detail.students.all  %}
         <p>{{ student.name }} who is {{ student.age }} years old</p>
     {% endfor %}
+
 </div>
+
+<div class="container">
+    <p><a class="btn btn-warning" href="{% url 'app:update' pk=school_detail.pk %}">Update</a></p>
+</div>
+
+<div class="container">
+    <p><a class="btn btn-warning" href="{% url 'app:delete' pk=school_detail.pk %}">Delete</a></p>
+</div>
+
 {% endblock %}
