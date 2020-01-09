@@ -11,7 +11,7 @@ class PostForm(forms.ModelForm):
         # Define which fields are associated with which CSS classes.
         widgets = {
             'title': forms.TextInput(attrs={'class': 'textinputclass'}),
-            'text': forms.TextArea(attrs={
+            'text': forms.Textarea(attrs={
                 'class': 'editable medium-editor-textarea postcontent'
                 })
         }
@@ -24,7 +24,7 @@ class CommentForm(forms.ModelForm):
 
         widgets = {
             "author": forms.TextInput(attrs={"class": "textinputclass"}),
-            "text": forms.TextArea(attrs={
+            "text": forms.Textarea(attrs={
                 'class': 'editable medium-editor-textarea'
                 })
         }

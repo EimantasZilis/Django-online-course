@@ -12,13 +12,12 @@ from django.views.generic import (
     UpdateView,
 )
 
-from blog forms import PostForm, CommentForm
+from blog.forms import PostForm, CommentForm
 from blog.models import Post, Comment
 
 
 class AboutView(TemplateView):
     template_name = "about.html"
-
 
 class PostListView(ListView):
     model = Post
@@ -30,11 +29,11 @@ class PostListView(ListView):
         # returns posts that were published <= now
         # and sorts by published date.
         return Post.objects.filter(
-            published_date__lte=timezone.now()
-        ).order_by('-published_date')
+            publication_date__lte=timezone.now()
+        ).order_by('-publication_date')
 
 
-class PostDetailView(DetaiView):
+class PostDetailView(DetailView):
     model = Post
 
 
@@ -54,7 +53,7 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     redirect_field_name = 'blog/post_detail.html'
 
 
-class PostDeleteView(LoginRequiredMixing, DeleteView):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = reverse_lazy("post_list")
 
@@ -66,7 +65,7 @@ class DraftListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Post.objects.filter(
-            published_date__isnull=True
+            publication_date__isnull=True
         ).order_by('created_date')
 
 @login_required
