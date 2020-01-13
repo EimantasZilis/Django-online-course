@@ -9,4 +9,8 @@ class SignUp(CreateView):
 
     # Redirect them to login page upon successful sign up
     success_url = reverse_lazy('login')
-    template_name = 'accounts/signup.html'
+
+    # Note that signup.html is in registration folder, not in accounts
+    # which is the app name! This is because django's built-in views
+    # expect login/singup templates to be in registration folder.
+    template_name = 'registration/signup.html'

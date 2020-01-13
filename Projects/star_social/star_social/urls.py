@@ -17,7 +17,18 @@ from django.contrib import admin
 from django.urls import include, path
 from star_social import views
 
+
+# Note that /accounts/ include two paths. 'accounts.urls'
+# is used for signup/login 'django.contrib.auth.urls'
+# provides built-in uthorisation. This is why you also
+# don't need to register any models in admin.py, because
+# we are relying on built-in user models.
+
 urlpatterns = [
     path('', views.HomePage.as_view(), name='home'),
     path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('test/', views.TestPage.as_view(), name='test'),
+    path('thanks/', views.ThanksPage.as_view(), name='thanks'),
 ]
