@@ -20,49 +20,40 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
+    <!-- glyphicon -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
     <title>Blog</title>
 </head>
 <body>
-    <nav class="navbar navbar-default Roboto custom-navbar">
-        <div class="container">
-            <ul class="nav navbar-nav">
-                <li><a class="navbar-brand bigbrand" href="{% url 'post_list' %}">Blog</a></li>
-                <li><a class="navbar-brand bigbrand" href="{% url 'about' %}">About</a></li>
-                <li><a href="https://github.com">GitHub</a></li>
-                <li><a href="https://google.com">Google</a></li>
-            </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'post_new' %}">New Post</a></li>
-                    <li><a href="{% url 'post_draft_list' %}">Drafts</a></li>
-                    <li><a href="{% url 'logout' %}">Log out</a></li>
-                    <li><a>Welcome {{ user.username }}</a></li>
-                {% else %}
-                    <li><a class="nav navbar-right" href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span></a></li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{% url 'index' %}">BRAND</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'post_list' %}">Blog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">Admin</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'app:register' %}">Register</a></li>
-
-                {% if user.is_authenticated %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Log out</a></li>
-                {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'app:user_login' %}">Login</a></li>
-                {% endif %}
+            <ul class="navbar-nav mr-auto nav-item">
+                <li><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                <li><a class="nav-link" href="https://www.github.com">GitHub</a></li>
+                <li><a class="nav-link" href="https://www.google.com">Google</a></li>
             </ul>
         </div>
-    </nav> -->
+
+        <ul class="navbar-nav mr-auto nav-item nav-right">
+            {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'post_new' %}" >New Post</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" >Log out</a></li>
+                <li class="nav-item"><a class="nav-link" >Welcome: {{ user.username }}</a></li>
+            {% else %}
+                <li><a class='nav navbar-right' href="{% url 'login' %}" >
+                  <span class="fa fa-user"></span>
+                </a></li>
+            {% endif %}
+        </ul>
+    </nav>
 
     <!-- Body block -->
     <div class="container container">

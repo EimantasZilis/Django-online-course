@@ -66,7 +66,11 @@ class DraftListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Post.objects.filter(
             publication_date__isnull=True
-        ).order_by('created_date')
+        ).order_by("create_date")
+
+#######################################
+## Functions that require a pk match ##
+#######################################
 
 @login_required
 def add_comment_to_post(request, pk):

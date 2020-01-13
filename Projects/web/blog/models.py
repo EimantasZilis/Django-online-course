@@ -31,7 +31,7 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey('blog.Post', related_name='comments', on_delete=models.PROTECT)
+    post = models.ForeignKey('blog.Post', related_name='comments', on_delete=models.CASCADE)
     author = models.CharField(max_length=200)
     text = models.TextField()
     create_date = models.DateTimeField(default=timezone.now)
