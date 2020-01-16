@@ -6,13 +6,17 @@ import misaka
 
 from groups.models import Group
 
+User = get_user_model()
+
 
 class Post(models.Model):
-    User = models.ForeignKey(User, related_name="posts", on_delete=models.PROTECT)
+    user = models.ForeignKey(User, related_name="posts", on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now=True)
     message = models.TextField()
     message_html = models.TextField(editable=False)
-    group = models.ForeignKey(Group, related_name="posts", null=True, blank=True, on_delete=models.CASCADE)
+    group = models.ForeignKey(
+        Group, related_name="posts", null=True, blank=True, on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.message
@@ -22,15 +26,10 @@ class Post(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse("posts:single", kwargs={
-            "username": self.user.username,
-            "pk": self.pk
-            }
+        return reverse(
+            "posts:single", kwargs={"username": self.user.username, "pk": self.pk}
         )
 
     class Meta:
-        ordering = ['-created_at']
-        unique_together = ['user', 'message']
-
-
-User = get_user_model()
+        ordering = ["-created_at"]
+        unique_together = ["user", "message"]
