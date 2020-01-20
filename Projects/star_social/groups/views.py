@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.views import generic
 
 from groups.models import Group, GroupMember
+from groups import models
 
 
 class CreateGroup(LoginRequiredMixin, generic.CreateView):

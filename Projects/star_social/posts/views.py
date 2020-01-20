@@ -1,4 +1,5 @@
 from braces.views import SelectRelatedMixin
+from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
@@ -7,6 +8,7 @@ from django.views import generic
 
 from posts import forms, models
 
+User = get_user_model()
 
 class PostListClass(SelectRelatedMixin, generic.ListView):
     model = models.Post
@@ -19,7 +21,7 @@ class UserPosts(generic.ListView):
 
     def get_queryset(self):
         try:
-            self.post.user = User.objects.prefetch_related("posts").get(
+            self.post_user = User.objects.prefetch_related("posts").get(
                 username__iexact=self.kwargs.get("username")
             )
         except User.DoesNotExist:
@@ -50,7 +52,7 @@ class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
-        return super().form_valid()
+        return super().form_valid(form)
 
 
 class DeletePost(LoginRequiredMixin, SelectRelatedMixin, generic.DeleteView):
@@ -60,8 +62,8 @@ class DeletePost(LoginRequiredMixin, SelectRelatedMixin, generic.DeleteView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        return queryset.filter(user_i=self.request.user.id)
+        return queryset.filter(user_id=self.request.user.id)
 
     def delete(self, *args, **kwargs):
         messages.success(self.request, "Post Deleted")
-        return super().delte(*args, **kwargs)
+        return super().delete(*args, **kwargs)
